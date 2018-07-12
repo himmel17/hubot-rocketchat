@@ -1,10 +1,10 @@
 FROM rocketchat/hubot-rocketchat:latest
 MAINTAINER himmel17
 LABEL title="hubot-rocketchat"
-LABEL version="0.1"
+LABEL version="0.2"
 LABEL description="社内proxy越しにnpmがうまくいかないのでDockerHubでカスタムイメージ作成．hubot-rss-readerを追加．"
 
-ENV EXTERNAL_SCRIPTS=hubot-diagnostics,hubot-help,hubot-google-images,hubot-google-translate,hubot-pugme,hubot-maps,hubot-rules,hubot-shipit,hubot-seen,hubot-links,hubot-rss-reader
+ENV EXTERNAL_SCRIPTS=hubot-diagnostics,hubot-help,hubot-google-images,hubot-google-translate,hubot-pugme,hubot-maps,hubot-rules,hubot-shipit,hubot-seen,hubot-links,hubot-mongodb-brain,hubot-rss-reader
 
 # ENV BOT_NAME "rocketbot"
 ENV BOT_NAME "bot"
