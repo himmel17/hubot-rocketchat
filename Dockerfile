@@ -19,6 +19,6 @@ RUN cd /home/hubot/node_modules/hubot-rocketchat && \
 	#coffee -c /home/hubot/node_modules/hubot-rocketchat/src/*.coffee && \
 	cd /home/hubot && \
 	node -e "console.log(JSON.stringify('$EXTERNAL_SCRIPTS'.split(',')))" > external-scripts.json && \
-	npm install $(node -e "console.log('$EXTERNAL_SCRIPTS'.split(',').join(' '))")
+	npm install --save $(node -e "console.log('$EXTERNAL_SCRIPTS'.split(',').join(' '))")
 
 CMD bin/hubot -n $BOT_NAME -a rocketchat
