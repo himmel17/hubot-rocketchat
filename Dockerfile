@@ -45,6 +45,7 @@ RUN npm install --save hubot-scripts && \
 	npm install --save && \
 	cd /home/hubot
 
-CMD node -e "console.log(JSON.stringify('$EXTERNAL_SCRIPTS'.split(',')))" > external-scripts.json && \
-	npm install --save $(node -e "console.log('$EXTERNAL_SCRIPTS'.split(',').join(' '))") && \
-	bin/hubot -n $BOT_NAME -a rocketchat
+RUN node -e "console.log(JSON.stringify('$EXTERNAL_SCRIPTS'.split(',')))" > external-scripts.json && \
+	npm install --save $(node -e "console.log('$EXTERNAL_SCRIPTS'.split(',').join(' '))")
+
+CMD bin/hubot -n $BOT_NAME -a rocketchat
