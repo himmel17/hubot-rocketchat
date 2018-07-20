@@ -41,9 +41,13 @@ RUN cd /home/hubot/node_modules/hubot-rocketchat && \
 	npm rm hubot-scripts
 
 RUN npm install --save hubot-scripts && \
+	npm install --save proxy-agent && \
 	cd /home/hubot/node_modules/hubot-rocketchat && \
 	npm install --save && \
 	cd /home/hubot
+
+COPY proxy.coffee /home/hubot/scripts/ && \
+	proxy.coffee /home/hubot/node_modules/hubot-rocketchat/scripts/
 
 RUN node -e "console.log(JSON.stringify('$EXTERNAL_SCRIPTS'.split(',')))" > external-scripts.json && \
 	npm install --save $(node -e "console.log('$EXTERNAL_SCRIPTS'.split(',').join(' '))")
