@@ -40,16 +40,25 @@ RUN cd /home/hubot/node_modules/hubot-rocketchat && \
     cd /home/hubot && \
 	npm rm hubot-scripts
 
+# RUN npm install --save hubot-scripts && \
+# 	npm install --save proxy-agent && \
+# 	cd /home/hubot/node_modules/hubot-rocketchat && \
+# 	npm install --save && \
+# 	cd /home/hubot
+
+# COPY proxy.coffee /home/hubot/scripts/
+# COPY proxy.coffee /home/hubot/node_modules/hubot-rocketchat/scripts/
+
 RUN npm install --save hubot-scripts && \
-	npm install --save proxy-agent && \
+	npm install --save global-tunnel-ng && \
 	cd /home/hubot/node_modules/hubot-rocketchat && \
 	npm install --save && \
 	cd /home/hubot
 
-COPY proxy.coffee /home/hubot/scripts/
-COPY proxy.coffee /home/hubot/node_modules/hubot-rocketchat/scripts/
-
 RUN node -e "console.log(JSON.stringify('$EXTERNAL_SCRIPTS'.split(',')))" > external-scripts.json && \
 	npm install --save $(node -e "console.log('$EXTERNAL_SCRIPTS'.split(',').join(' '))")
+
+COPY proxy.js /home/hubot/
+# RUN node proxy.js
 
 CMD bin/hubot -n $BOT_NAME -a rocketchat
